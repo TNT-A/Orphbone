@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://c5g7iln5iscei"]
+
+[ext_resource type="Texture2D" uid="uid://dp8vu5gvbyiwv" path="res://sprites/orphbone_background.png" id="1_oabld"]
+
+[node name="Background" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(80, 45)
+texture = ExtResource("1_oabld")

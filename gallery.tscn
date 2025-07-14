@@ -1,0 +1,110 @@
+[gd_scene load_steps=12 format=3 uid="uid://n7cxbvijqu2w"]
+
+[ext_resource type="Script" uid="uid://bp23ui1ywobck" path="res://gallery.gd" id="1_1hwuq"]
+[ext_resource type="PackedScene" uid="uid://dryq1hh2x8dt3" path="res://shot_marker.tscn" id="1_ay20g"]
+[ext_resource type="PackedScene" uid="uid://c5g7iln5iscei" path="res://background.tscn" id="1_bvpv7"]
+[ext_resource type="PackedScene" uid="uid://56tkfvynx2yo" path="res://destroy_zone.tscn" id="1_p1a2d"]
+[ext_resource type="PackedScene" uid="uid://k5u8on0kqg0j" path="res://logo.tscn" id="2_1hwuq"]
+[ext_resource type="PackedScene" uid="uid://cf2a132pltmjo" path="res://scorebox.tscn" id="2_op3a4"]
+[ext_resource type="PackedScene" uid="uid://dyeoo5bvnwbes" path="res://rand_spawner.tscn" id="3_d3htb"]
+[ext_resource type="PackedScene" uid="uid://wb2pspnsynd8" path="res://teleport_spawner.tscn" id="3_l6m5p"]
+[ext_resource type="PackedScene" uid="uid://tyipyvxv7gqu" path="res://bone_shooter.tscn" id="4_35n8b"]
+[ext_resource type="PackedScene" uid="uid://oy185i5jxinp" path="res://target_spawner.tscn" id="4_d3htb"]
+[ext_resource type="PackedScene" uid="uid://cku83l07hnh2w" path="res://target_rail.tscn" id="4_qjuxl"]
+
+[node name="Gallery" type="Node2D"]
+script = ExtResource("1_1hwuq")
+
+[node name="AddTimer" type="Timer" parent="."]
+wait_time = 10.0
+
+[node name="RemoveTimer" type="Timer" parent="."]
+wait_time = 35.0
+
+[node name="ShakeUpTimer" type="Timer" parent="."]
+wait_time = 75.0
+
+[node name="Scorebox" parent="." instance=ExtResource("2_op3a4")]
+
+[node name="Logo" parent="." instance=ExtResource("2_1hwuq")]
+
+[node name="DestroyZone" parent="." instance=ExtResource("1_p1a2d")]
+
+[node name="Background" parent="." instance=ExtResource("1_bvpv7")]
+z_index = -10
+
+[node name="BoneShooter" parent="." instance=ExtResource("4_35n8b")]
+
+[node name="ShotMarker" parent="." instance=ExtResource("1_ay20g")]
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(80, 90)
+
+[node name="projectile_plane" type="Node2D" parent="."]
+
+[node name="target_plane" type="Node2D" parent="."]
+
+[node name="TeleportSpawner3" parent="target_plane" instance=ExtResource("3_l6m5p")]
+
+[node name="TeleportSpawner2" parent="target_plane" instance=ExtResource("3_l6m5p")]
+
+[node name="TeleportSpawner4" parent="target_plane" instance=ExtResource("3_l6m5p")]
+
+[node name="TeleportSpawner" parent="target_plane" instance=ExtResource("3_l6m5p")]
+
+[node name="RandSpawner4" parent="target_plane" instance=ExtResource("3_d3htb")]
+
+[node name="RandSpawner3" parent="target_plane" instance=ExtResource("3_d3htb")]
+
+[node name="RandSpawner2" parent="target_plane" instance=ExtResource("3_d3htb")]
+
+[node name="RandSpawner" parent="target_plane" instance=ExtResource("3_d3htb")]
+
+[node name="TargetRail6" parent="target_plane" instance=ExtResource("4_qjuxl")]
+position = Vector2(7, 61)
+rotation = 3.14092
+
+[node name="TargetRail" parent="target_plane" instance=ExtResource("4_qjuxl")]
+position = Vector2(154, 28)
+
+[node name="TargetRail3" parent="target_plane" instance=ExtResource("4_qjuxl")]
+position = Vector2(80, 82)
+rotation = 1.5708
+
+[node name="TargetRail7" parent="target_plane" instance=ExtResource("4_qjuxl")]
+position = Vector2(5, 84)
+rotation = 2.35737
+
+[node name="TargetRail2" parent="target_plane" instance=ExtResource("4_qjuxl")]
+position = Vector2(154, 84)
+rotation = 0.785398
+
+[node name="TargetRail5" parent="target_plane" instance=ExtResource("4_qjuxl")]
+position = Vector2(138, 7)
+rotation = -1.57623
+
+[node name="TargetRail4" parent="target_plane" instance=ExtResource("4_qjuxl")]
+position = Vector2(21, 6)
+rotation = -1.5716
+
+[node name="TargetSpawner" parent="target_plane" instance=ExtResource("4_d3htb")]
+position = Vector2(26, 23)
+
+[node name="TargetSpawner2" parent="target_plane" instance=ExtResource("4_d3htb")]
+position = Vector2(25, 69)
+
+[node name="TargetSpawner6" parent="target_plane" instance=ExtResource("4_d3htb")]
+position = Vector2(135, 68)
+
+[node name="TargetSpawner5" parent="target_plane" instance=ExtResource("4_d3htb")]
+position = Vector2(136, 24)
+
+[node name="TargetSpawner4" parent="target_plane" instance=ExtResource("4_d3htb")]
+position = Vector2(78, 19)
+
+[node name="TargetSpawner3" parent="target_plane" instance=ExtResource("4_d3htb")]
+position = Vector2(80, 63)
+
+[connection signal="timeout" from="AddTimer" to="." method="_on_add_timer_timeout"]
+[connection signal="timeout" from="RemoveTimer" to="." method="_on_remove_timer_timeout"]
+[connection signal="timeout" from="ShakeUpTimer" to="." method="_on_shake_up_timer_timeout"]

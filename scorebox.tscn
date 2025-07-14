@@ -1,0 +1,83 @@
+[gd_scene load_steps=9 format=3 uid="uid://cf2a132pltmjo"]
+
+[ext_resource type="Texture2D" uid="uid://cer0m1e20gxke" path="res://sprites/orphbone_score_box.png" id="1_2v4jo"]
+[ext_resource type="Script" uid="uid://bupsfahkho71r" path="res://scorebox.gd" id="1_rikq5"]
+[ext_resource type="FontFile" uid="uid://q3twr35iw4ss" path="res://sprites/font/Vaticanus-G3yVG.ttf" id="2_uaxpt"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_rikq5"]
+font = ExtResource("2_uaxpt")
+font_size = 8
+
+[sub_resource type="Animation" id="Animation_rikq5"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_uaxpt"]
+resource_name = "fade in"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1.5, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_02wt8"]
+resource_name = "flash"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_02wt8"]
+_data = {
+&"RESET": SubResource("Animation_rikq5"),
+&"fade in": SubResource("Animation_uaxpt"),
+&"flash": SubResource("Animation_02wt8")
+}
+
+[node name="Scorebox" type="Node2D"]
+script = ExtResource("1_rikq5")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(149, 12)
+texture = ExtResource("1_2v4jo")
+
+[node name="Label" type="Label" parent="Sprite2D"]
+offset_left = -8.0
+offset_top = -4.0
+offset_right = 8.0
+offset_bottom = 19.0
+text = "9999"
+label_settings = SubResource("LabelSettings_rikq5")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_02wt8")
+}

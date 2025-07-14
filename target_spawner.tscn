@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=3 uid="uid://oy185i5jxinp"]
+
+[ext_resource type="Script" uid="uid://r6vd3y52gyny" path="res://target_spawner.gd" id="1_yl360"]
+
+[node name="TargetSpawner" type="Node2D"]
+script = ExtResource("1_yl360")
+
+[node name="SpawnPoint" type="Marker2D" parent="."]
+
+[node name="Polygon2D" type="Polygon2D" parent="SpawnPoint"]
+position = Vector2(2.38419e-07, 2.38419e-07)
+scale = Vector2(2.75, 2.75)
+color = Color(1, 1, 0, 1)
+polygon = PackedVector2Array(-0.333333, -0.333333, 0, 0, -1, 0, 0, -1, 1, 0, 0, 1, -1, 0)
+
+[node name="SpawnTimer" type="Timer" parent="."]
+
+[connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]

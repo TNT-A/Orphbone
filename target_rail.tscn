@@ -1,0 +1,25 @@
+[gd_scene load_steps=2 format=3 uid="uid://cku83l07hnh2w"]
+
+[ext_resource type="Script" uid="uid://dw6g5221t0lr" path="res://target_rail.gd" id="1_fa8d6"]
+
+[node name="TargetRail" type="Node2D"]
+script = ExtResource("1_fa8d6")
+
+[node name="BeginningMark" type="Marker2D" parent="."]
+position = Vector2(12, 0)
+
+[node name="Polygon2D" type="Polygon2D" parent="BeginningMark"]
+color = Color(1.73271e-06, 0.644397, 0.262762, 1)
+polygon = PackedVector2Array(-4, 0, 1, -4, 3, 2, -1, 4)
+
+[node name="EndMark" type="Marker2D" parent="."]
+position = Vector2(-10, 0)
+
+[node name="Polygon2D" type="Polygon2D" parent="EndMark"]
+color = Color(1, 0, 0, 1)
+polygon = PackedVector2Array(-4, 0, 1, -4, 3, 2, -1, 4)
+
+[node name="SpawnTimer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]

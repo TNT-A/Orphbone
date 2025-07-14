@@ -1,0 +1,86 @@
+[gd_scene load_steps=9 format=3 uid="uid://tyipyvxv7gqu"]
+
+[ext_resource type="Script" uid="uid://pq2d4026x3xk" path="res://bone_shooter.gd" id="1_ybyxi"]
+[ext_resource type="Texture2D" uid="uid://vipqv7lon1jc" path="res://sprites/bone_bar.png" id="2_1xnwh"]
+[ext_resource type="FontFile" uid="uid://dum83j4o0fhog" path="res://sprites/font/misc/Vaticanus-4f67.woff" id="3_1xnwh"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_1xnwh"]
+font = ExtResource("3_1xnwh")
+font_size = 8
+font_color = Color(0.792157, 0.470588, 0, 1)
+shadow_size = 0
+shadow_offset = Vector2(0, 0)
+
+[sub_resource type="Animation" id="Animation_ims6l"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_1xnwh"]
+resource_name = "fade_in"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_vhqnk"]
+resource_name = "fade_out"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vhqnk"]
+_data = {
+&"RESET": SubResource("Animation_ims6l"),
+&"fade_in": SubResource("Animation_1xnwh"),
+&"fade_out": SubResource("Animation_vhqnk")
+}
+
+[node name="BoneShooter" type="Node2D"]
+z_index = 999
+script = ExtResource("1_ybyxi")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(80, 45)
+texture = ExtResource("2_1xnwh")
+
+[node name="Label" type="Label" parent="."]
+offset_left = 74.0
+offset_top = 82.0
+offset_right = 93.0
+offset_bottom = 131.0
+label_settings = SubResource("LabelSettings_1xnwh")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_vhqnk")
+}
