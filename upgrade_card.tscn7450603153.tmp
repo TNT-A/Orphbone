@@ -1,0 +1,41 @@
+[gd_scene load_steps=5 format=3 uid="uid://chu2pcar18760"]
+
+[ext_resource type="Texture2D" uid="uid://cvqjlk6d82oka" path="res://sprites/upgrade_card.png" id="1_amdpx"]
+[ext_resource type="Script" uid="uid://dfj18tyivr1no" path="res://upgrade_card.gd" id="1_vkahh"]
+[ext_resource type="LabelSettings" uid="uid://v0g7fu7ct8ya" path="res://scoreFont.tres" id="2_vkahh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vkahh"]
+size = Vector2(52, 64)
+
+[node name="upgrade_card" type="Node2D"]
+script = ExtResource("1_vkahh")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_amdpx")
+
+[node name="Title" type="Label" parent="Sprite2D"]
+offset_left = -20.0
+offset_top = -26.0
+offset_right = 20.0
+offset_bottom = -18.0
+text = "Title"
+label_settings = ExtResource("2_vkahh")
+horizontal_alignment = 1
+
+[node name="Upgrade" type="Label" parent="Sprite2D"]
+offset_left = -12.0
+offset_top = -14.0
+offset_right = 12.0
+offset_bottom = 24.0
+text = "Description"
+label_settings = ExtResource("2_vkahh")
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_vkahh")
+
+[connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="Area2D" to="." method="_on_area_2d_mouse_exited"]

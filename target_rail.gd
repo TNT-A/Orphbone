@@ -9,7 +9,6 @@ var active : bool = false
 
 func _ready() -> void:
 	$SpawnTimer.wait_time = spawn_speed
-	print($EndMark.global_position, $BeginningMark.global_position)
 	self.visible = false
 
 func spawn_target():
