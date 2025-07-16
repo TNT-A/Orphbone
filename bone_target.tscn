@@ -371,7 +371,7 @@ size = Vector2(4.8, 4.8)
 size = Vector2(4.66667, 4.66667)
 
 [node name="BoneTarget" type="Node2D" groups=["target"]]
-scale = Vector2(2.5, 2.5)
+scale = Vector2(2, 2)
 script = ExtResource("1_66r7w")
 type = "stationary"
 is_alive = false

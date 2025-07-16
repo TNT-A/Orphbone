@@ -13,6 +13,7 @@ func check_score():
 	if PointController.points >= next_check:
 		$AnimationPlayer.play("fade in")
 		next_check += 100
+		print("hit score ", PointController.points)
 
 func flash():
 	$AnimationPlayer.play("flash")

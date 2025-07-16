@@ -77,8 +77,8 @@ func escape():
 	queue_free()
 
 func add_energy():
-	PointController.add_energy(5)
-	PointController.add_points(10)
+	PointController.add_energy(PointController.gain_energy)
+	PointController.add_points(PointController.gain_points)
 
 var parent
 var spawner_speed

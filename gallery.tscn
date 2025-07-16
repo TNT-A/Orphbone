@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://n7cxbvijqu2w"]
+[gd_scene load_steps=14 format=3 uid="uid://n7cxbvijqu2w"]
 
 [ext_resource type="Script" uid="uid://bp23ui1ywobck" path="res://gallery.gd" id="1_1hwuq"]
 [ext_resource type="PackedScene" uid="uid://dryq1hh2x8dt3" path="res://shot_marker.tscn" id="1_ay20g"]
@@ -11,6 +11,8 @@
 [ext_resource type="PackedScene" uid="uid://tyipyvxv7gqu" path="res://bone_shooter.tscn" id="4_35n8b"]
 [ext_resource type="PackedScene" uid="uid://oy185i5jxinp" path="res://target_spawner.tscn" id="4_d3htb"]
 [ext_resource type="PackedScene" uid="uid://cku83l07hnh2w" path="res://target_rail.tscn" id="4_qjuxl"]
+[ext_resource type="PackedScene" uid="uid://bvbctou0upl07" path="res://final_result.tscn" id="12_4s08b"]
+[ext_resource type="PackedScene" uid="uid://b7yw8wytjntwn" path="res://click_to_play.tscn" id="12_tw5dh"]
 
 [node name="Gallery" type="Node2D"]
 script = ExtResource("1_1hwuq")
@@ -104,6 +106,10 @@ position = Vector2(78, 19)
 
 [node name="TargetSpawner3" parent="target_plane" instance=ExtResource("4_d3htb")]
 position = Vector2(80, 63)
+
+[node name="FinalResult" parent="." instance=ExtResource("12_4s08b")]
+
+[node name="ClickToPlay" parent="." instance=ExtResource("12_tw5dh")]
 
 [connection signal="timeout" from="AddTimer" to="." method="_on_add_timer_timeout"]
 [connection signal="timeout" from="RemoveTimer" to="." method="_on_remove_timer_timeout"]

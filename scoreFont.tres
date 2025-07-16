@@ -1,0 +1,8 @@
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://v0g7fu7ct8ya"]
+
+[ext_resource type="FontFile" uid="uid://q3twr35iw4ss" path="res://sprites/font/Vaticanus-G3yVG.ttf" id="1_15yfh"]
+
+[resource]
+line_spacing = 0.0
+font = ExtResource("1_15yfh")
+font_size = 8

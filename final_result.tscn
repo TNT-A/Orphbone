@@ -1,0 +1,129 @@
+[gd_scene load_steps=13 format=3 uid="uid://bvbctou0upl07"]
+
+[ext_resource type="Script" uid="uid://c4hfacag7hlxj" path="res://final_result.gd" id="1_ovwwx"]
+[ext_resource type="Texture2D" uid="uid://b3arj44gv8rsd" path="res://sprites/scoreResult.png" id="1_t3y0c"]
+[ext_resource type="LabelSettings" uid="uid://v0g7fu7ct8ya" path="res://scoreFont.tres" id="2_k1m74"]
+[ext_resource type="FontFile" uid="uid://q3twr35iw4ss" path="res://sprites/font/Vaticanus-G3yVG.ttf" id="2_qgb2t"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ovwwx"]
+font = ExtResource("2_qgb2t")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_k1m74"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l3cfy"]
+bg_color = Color(0.984314, 0.72549, 0.211765, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m5pub"]
+bg_color = Color(0.87451, 0.443137, 0.14902, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Theme" id="Theme_u7lnq"]
+default_font = ExtResource("2_qgb2t")
+default_font_size = 8
+Button/constants/h_separation = 4
+Button/styles/focus = SubResource("StyleBoxEmpty_k1m74")
+Button/styles/hover = SubResource("StyleBoxFlat_l3cfy")
+Button/styles/hover_pressed = SubResource("StyleBoxFlat_l3cfy")
+Button/styles/normal = SubResource("StyleBoxFlat_m5pub")
+
+[sub_resource type="Animation" id="Animation_m5pub"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_l3cfy"]
+resource_name = "fade_in"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_u7lnq"]
+_data = {
+&"RESET": SubResource("Animation_m5pub"),
+&"fade_in": SubResource("Animation_l3cfy")
+}
+
+[node name="FinalResult" type="Node2D"]
+script = ExtResource("1_ovwwx")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(80, 45)
+texture = ExtResource("1_t3y0c")
+
+[node name="FinalScore" type="Label" parent="Sprite2D"]
+offset_left = -20.0
+offset_top = -26.0
+offset_right = 22.0
+offset_bottom = -18.0
+text = "Final Score!"
+label_settings = ExtResource("2_k1m74")
+horizontal_alignment = 1
+
+[node name="ScoreDisplay" type="Label" parent="Sprite2D"]
+offset_left = -19.0
+offset_top = -13.0
+offset_right = 21.0
+offset_bottom = 10.0
+text = "100!"
+label_settings = SubResource("LabelSettings_ovwwx")
+horizontal_alignment = 1
+
+[node name="HighScore" type="Label" parent="Sprite2D"]
+offset_left = -36.0
+offset_top = 6.0
+offset_right = 37.0
+offset_bottom = 14.0
+text = "High Score:"
+label_settings = ExtResource("2_k1m74")
+
+[node name="HighScore2" type="Label" parent="Sprite2D"]
+offset_left = 6.0
+offset_top = 6.0
+offset_right = 79.0
+offset_bottom = 14.0
+text = "100"
+label_settings = ExtResource("2_k1m74")
+
+[node name="Button" type="Button" parent="Sprite2D"]
+offset_left = -32.0
+offset_top = 17.0
+offset_right = 33.0
+offset_bottom = 27.0
+theme = SubResource("Theme_u7lnq")
+text = "Play Again?"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_u7lnq")
+}
+
+[connection signal="pressed" from="Sprite2D/Button" to="." method="_on_button_pressed"]
